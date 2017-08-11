@@ -1,0 +1,210 @@
+body {
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.mybtn {
+    cursor: pointer !important;
+    background-color: white !important;
+    color: #2E97DE !important;
+    /*border-top: 1px solid #2E97DE !important;*/
+}
+
+.myIco {
+    cursor: move !important;
+    text-align: center;
+    background-color: white !important;
+    color: #2E97DE !important;
+    /*border-top: 1px solid #2E97DE !important;*/
+}
+
+.glyphicon {
+    color: #2E97DE !important;
+}
+
+/*drag and drop list css*/
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+.typesDemo ul[dnd-list],
+.typesDemo ul[dnd-list] > li {
+    position: relative;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.typesDemo ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.typesDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.typesDemo ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #ddd;
+    padding: 10px 15px;
+    min-height: 42px;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.typesDemo ul[dnd-list] li {
+    background-color: #fff;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    margin-bottom: 1px;
+
+    /* Disable text selection if item is not draggable */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.typesDemo ul[dnd-list] li dnd-nodrag {
+    display: block;
+    padding: 10px 10px;
+    white-space: nowrap;
+    border-bottom: solid 2px #d0d0d0;
+}
+
+/**
+ * Gender-specifc background
+ */
+.typesDemo ul[dnd-list] li.background {
+    background-color: #CAE0FC;
+}
+
+.typesDemo ul[dnd-list] li.background-bad {
+    background-color: #FFE2F5;
+}
+
+.typesDemo ul[dnd-list] input.background {
+    background-color: #D8E9FF;
+}
+
+.typesDemo ul[dnd-list] input.background-bad {
+    background-color: #FFF0FA;
+}
+
+.typesDemo ul[dnd-list] select.background {
+    background-color: #D8E9FF;
+}
+
+.typesDemo ul[dnd-list] select.background-bad {
+    background-color: #FFF0FA;
+}
+
+/**
+ * Handle positioning
+ */
+.typesDemo .handle {
+    cursor: move;
+}
+
+.typesDemo .name {
+    margin-left: 20px;
+}
+
+.panel-body {
+    padding: 0px !important;
+}
+
+.dragicon {
+    padding-left: 10px !important;
+}
+
+.mytoolbox {
+    position: fixed;
+    top: 40px;
+    right: 12%;
+    width: 11%;
+    border: 2px solid #00B7FF !important;
+}
+
+@media only screen and (max-width: 991px) {
+    [class*=col-md] {
+        margin-bottom: 0px !important;
+    }
+}
+
+.col-md-12 {
+    padding-right: 5px !important;
+    padding-left: 5px !important;
+}
+
+.form-control {
+    text-align: center;
+    padding: 6px 0 !important;
+}
+
+.form-control-feedback {
+    left: 0 !important;
+    z-index: 1 !important;
+    pointer-events: auto !important;
+}
+
+.mytooltip + .mytooltiptext {
+    width: 90%;
+    min-height: 55px;
+    height: auto;
+    white-space: pre-wrap;
+    background-color: #2E97DE;
+    text-align: center;
+    border-radius: 4px;
+    padding: 2px 1px;
+    position: absolute;
+    z-index: 1;
+    bottom: 80%;
+    left: 50%;
+    margin-left: -60px;
+    font-size: 12px;
+}
+
+.mytooltip + .mytooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 99%;
+    left: 6%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #2E97DE transparent transparent transparent;
+}
+
+.mytooltip:hover {
+    font-size: 1.2em;
+}
+
+.mytooltip:active {
+    font-size: 0.9em;
+}
+.money{
+    line-height: 2.4em;
+    text-align: center;
+}

@@ -1,0 +1,271 @@
+<div class="container">
+    <div class="typesDemo row">
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+            <div class="row"
+                 ng-repeat="groupsta in chunkedData">
+                <div ng-repeat="sta in groupsta"
+                     class="col-md-6 col-sm-6 col-xs-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h3 class="panel-title">
+                                        Sân số
+                                        {{sta.name}}</h3>
+                                </div>
+                                <div class="col-md-2 text-right">
+                                    <i class="glyphicon glyphicon-plus pointer mytooltip"
+                                       ng-click="addMatch(sta)"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <ul dnd-list="sta.matchs"
+                                dnd-disable-if="sta.matchs.length >= maxItemAllow">
+
+                                <li ng-repeat="match in sta.matchs"
+                                    dnd-draggable="match"
+                                    dnd-moved="onMoved(sta.matchs, $index, match)"
+                                    dnd-effect-allowed="move"
+                                    class="background"
+                                >
+                                    <dnd-nodrag>
+                                        <div class="row">
+                                            <div dnd-handle
+                                                 class="col-md-1 col-sm-12 col-xs-12">
+                                                <div class="row handle dragicon">
+                                                    <div class="col-md-12 col-sm-1 col-xs-1">
+                                                        :::
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-1 col-xs-1">
+                                                        :::
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-1 col-xs-1">
+                                                        :::
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-12 col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <select class="form-control background input-sm"
+                                                                ng-model="match.beginTime"
+                                                                ng-class="{'background-bad': match.beginTime=='01:00'}"
+                                                                ng-selected="match.beginTime"
+                                                                ng-options="time for time in timesBegin">
+                                                            <option value=""
+                                                                    disabled="disabled">
+                                                                Bắt
+                                                                đầu
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <select class="form-control background input-sm"
+                                                                ng-model="match.endTime"
+                                                                ng-class="{'background-bad': match.endTime=='01:00'}"
+                                                                ng-selected="match.endTime"
+                                                                ng-options="time for time in timesEnd">
+                                                            <option value=""
+                                                                    disabled="disabled">
+                                                                Kết
+                                                                thúc
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <i class="form-control-feedback glyphicon glyphicon-user pointer mytooltip"
+                                                           ng-click="updateUser(sta.id, match, match.cus1)"></i>
+                                                        <textarea
+                                                                class="mytooltiptext"
+                                                                ng-show="match.cus1.showDes"
+                                                                ng-model="match.cus1.description"></textarea>
+                                                        <input type="text"
+                                                               ng-model="match.cus1.name"
+                                                               ng-class="{'background-bad': match.cus1.name==null}"
+                                                               class="background form-control input-sm"
+                                                               placeholder="Đội 1"/>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <i class="form-control-feedback glyphicon glyphicon-user pointer mytooltip"
+                                                           ng-click="updateUser(sta.id, match, match.cus2)"></i>
+                                                        <textarea
+                                                                class="mytooltiptext"
+                                                                ng-show="match.cus2.showDes"
+                                                                ng-model="match.cus2.description"></textarea>
+                                                        <input type="text"
+                                                               ng-model="match.cus2.name"
+                                                               ng-class="{'background-bad': match.cus2.name==null}"
+                                                               class="background form-control input-sm"
+                                                               placeholder="Đội 2"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <i class="form-control-feedback glyphicon glyphicon-phone"></i>
+                                                        <input type="text"
+                                                               ng-model="match.cus1.phone"
+                                                               ng-class="{'background-bad': match.cus1.phone==null}"
+                                                               class="background form-control input-sm"
+                                                               placeholder="Điện thoại"
+                                                               uib-typeahead="cus.phone as cus.phone for cus in cusList | filter:{phone:$viewValue} | limitTo:5"/>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <i class="form-control-feedback glyphicon glyphicon-phone"></i>
+                                                        <input type="text"
+                                                               ng-model="match.cus2.phone"
+                                                               ng-class="{'background-bad': match.cus2.phone==null}"
+                                                               class="background form-control input-sm"
+                                                               placeholder="Điện thoại"
+                                                               uib-typeahead="cus.phone as cus.phone for cus in cusList | filter:{phone:$viewValue} | limitTo:5"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <input type="number" min="1000" max="1000000"
+                                                               ng-model="match.money1"
+                                                               ng-class="{'background-bad': match.money1==null}"
+                                                               class="background form-control input-sm"
+                                                               placeholder="Tiền sân"/>
+                                                    </div>
+                                                    <div class="col-md-12 col-sm-6 col-xs-6">
+                                                        <input type="number" min="1000" max="1000000"
+                                                               ng-model="match.money2"
+                                                               ng-class="{'background-bad': match.money2==null}"
+                                                               class="background form-control input-sm"
+                                                               placeholder="Tiền nước"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </dnd-nodrag>
+                                </li>
+                                <li class="background"
+                                >
+                                    <div class="panel-title money">
+                                        Thu trong ngày:
+                                        {{(sta.money1+sta.money2 | currency:'$ ':0)
+                                        || 0}}
+                                        ( Tiền sân:
+                                        {{sta.money1 | currency:'$ ':0}},
+                                        nước: {{sta.money2 | currency:'$ ':0}} )
+                                    </div>
+                                    <!--<div class="panel-title money">-->
+                                        <!--Thu tháng:-->
+                                        <!--{{(sta.monthMoney1+sta.monthMoney2)-->
+                                        <!--|| 0}}-->
+                                        <!--( Tiền sân:-->
+                                        <!--{{sta.monthMoney1 ||-->
+                                        <!--0}},-->
+                                        <!--Tiền nước:-->
+                                        <!--{{sta.monthMoney2 ||-->
+                                        <!--0}} )-->
+                                    <!--</div>-->
+                                </li>
+                                <li class="dndPlaceholder">
+                                    Thả
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <div class="panel panel-info mytoolbox"
+                 dragable>
+                <div class="panel-heading"
+                     style="cursor: move !important;">
+                    <h3 class="panel-title">Ngày</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="input-group">
+                        <input readonly tabindex="-1"
+                               class="form-control text-center mybtn"
+                               id="myCal" name="today"
+                               ng-model="selectedDate"
+                               ng-change="load()"
+                               type="text"
+                               is-open="opened"
+                               uib-datepicker-popup="dd/MM/yyyy"
+                               ng-click="opened=true"/>
+                    </div>
+                    <div class="input-group">
+                        <button type="button" tabindex="-1"
+                                class="form-control mybtn"
+                                ng-click="save()">Lưu
+                            <i
+                                    class="glyphicon glyphicon-save"></i>
+                        </button>
+                    </div>
+                    <div class="input-group"
+                         dnd-draggable="newMatch"
+                         dnd-effect-allowed="move"
+                    >
+                        <button type="button" tabindex="-1"
+                                class="btn myIco">
+                            <img style="width: 50%;height: 50%"
+                                 src="../images/add.jpg">
+                        </button>
+                    </div>
+                    <div class="input-group myIco"
+                         dnd-list="[]">
+                        <img style="width: 60%;height: 60%"
+                             src="../images/trash.jpg">
+                    </div>
+                    <div class="input-group">
+                        <div class="panel-title money mybtn">
+                            Doanh thu tháng này
+                        </div>
+                        <div class="panel-title money">
+                            Tiền sân: {{monthMoney1 | currency:'$ ':0}}
+                        </div>
+                        <div class="panel-title money">
+                            Tiền nước: {{monthMoney2 | currency:'$ ':0}}
+                        </div>
+                        <div class="panel-title money">
+                            Tổng:
+                            {{monthMoney1+monthMoney2 | currency:'$ ':0}}
+                        </div>
+                    </div>
+                    <!--<div class="input-group">-->
+                    <!--<button type="button" tabindex="-1"-->
+                    <!--class="form-control mybtn"-->
+                    <!--ng-repeat="cus in cusList | limitTo: 5"-->
+                    <!--dnd-draggable="cus"-->
+                    <!--dnd-effect-allowed="move"-->
+                    <!--&gt;-->
+                    <!--<i class="glyphicon glyphicon-user"></i>-->
+                    <!--{{cus.name}}-{{cus.phone}}-->
+                    <!--</button>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="saved" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active"
+                         role="progressbar"
+                         ng-style="{'width':per+'%'}">
+                        Saving...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,1 @@
+CreateObject("Wscript.Shell").Run "cmd /K CD E:\Management\ & start chrome http://localhost:2222/ & npm start", 0, True
